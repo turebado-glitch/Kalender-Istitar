@@ -32,18 +32,18 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Build Debug APK
+      - name: Build Release APK
         run: |
           ZIP_FILE=$(ls -1 *.zip 2>/dev/null | head -n 1)
           if [ -n "$ZIP_FILE" ]; then
             unzip -o "$ZIP_FILE"
             cd KalenderIstitarAndroid
           fi
-          gradle assembleDebug --no-daemon
-          cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/app-debug.apk"
+          gradle assembleRelease --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/app-release.apk"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Kalender-Istitar-APK
-          path: app-debug.apk
+          name: Kalender-Istitar-Release-APK
+          path: app-release.apk
