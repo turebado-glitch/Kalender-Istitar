@@ -19,19 +19,16 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Setup Gradle Wrapper
+      run: |
+        gradle wrapper --gradle-version 8.0
+
     - name: Grant execute permission for gradlew
       run: |
-        cd app || true
-        if [ ! -f ../gradlew ]; then
-          cd ..
-          gradle wrapper
-        else
-          cd ..
-        fi
         chmod +x gradlew
 
     - name: Build APK with Gradle
-      run: ./gradlew assembleRelease
+      run: ./gradlew assembleRelease --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
