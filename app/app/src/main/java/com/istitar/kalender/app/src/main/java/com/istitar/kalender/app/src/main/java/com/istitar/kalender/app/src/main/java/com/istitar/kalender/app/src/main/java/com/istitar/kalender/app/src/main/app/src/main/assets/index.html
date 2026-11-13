@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender Istitar</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 { color: #00f0ff; }
+    </style>
+</head>
+<body>
+    <h1>Kalender Istitar</h1>
+    <p>Aplikasi Jam Istiwak & Kalender Aktif</p>
+    <p id="status">Memuat sistem...</p>
+
+    <script>
+        // Contoh komunikasi dengan layanan Android
+        if (window.AndroidBridge && typeof window.AndroidBridge.triggerUpdate === 'function') {
+            window.AndroidBridge.triggerUpdate();
+            document.getElementById('status').innerText = 'Layanan latar belakang terhubung.';
+        } else {
+            document.getElementById('status').innerText = 'Berjalan di peramban web.';
+        }
+    </script>
+</body>
+</html>
