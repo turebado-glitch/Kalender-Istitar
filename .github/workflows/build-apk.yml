@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Web APK
 
 on:
   push:
@@ -13,28 +13,27 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
       with:
-        distribution: 'temurin'
-        java-version: '17'
+        node-version: '18'
 
-    - name: Grant execute permission for gradlew
-      run: |
-        cd app || true
-        if [ ! -f ../gradlew ]; then
-          cd ..
-          gradle wrapper
-        else
-          cd ..
-        fi
-        chmod +x gradlew
+    - name: Generate APK from Web Files
+      uses: KushalP/web-to-apk@v1
+      with:
+        args: |
+          {
+            "name": "Kalender Istitar",
+            "short_name": "KalenderIstitar",
+            "start_url": "/index.html",
+            "background_color": "#ffffff",
+            "theme_color": "#000000",
+            "display": "standalone",
+            "orientation": "portrait"
+          }
 
-    - name: Build APK with Gradle
-      run: ./gradlew assembleRelease
-
-    - name: Upload APK Artifact
+    - name: Upload Generated APK
       uses: actions/upload-artifact@v4
       with:
         name: Kalender-Istitar-APK
-        path: app/build/outputs/apk/release/
+        path: "*.apk"
