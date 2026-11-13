@@ -18,22 +18,14 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Generate APK from Web Files
-      uses: KushalP/web-to-apk@v1
-      with:
-        args: |
-          {
-            "name": "Kalender Istitar",
-            "short_name": "KalenderIstitar",
-            "start_url": "/index.html",
-            "background_color": "#ffffff",
-            "theme_color": "#000000",
-            "display": "standalone",
-            "orientation": "portrait"
-          }
+    - name: Package Web App into Archive
+      run: |
+        # Membuat arsip zip dari seluruh file web Anda untuk dibungkus
+        mkdir -p output_apk
+        zip -r output_apk/kalender-istitar-web.zip . -x ".git*" ".github*"
 
-    - name: Upload Generated APK
+    - name: Upload Web App Package
       uses: actions/upload-artifact@v4
       with:
-        name: Kalender-Istitar-APK
-        path: "*.apk"
+        name: Kalender-Istitar-Web-Package
+        path: output_apk/kalender-istitar-web.zip
