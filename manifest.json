@@ -1,14 +1,12 @@
 {
-  "background_color": "#2a2a2a",
+  "background_color": "#353333",
   "dir": "ltr",
-  "display": "fullscreen",
+  "display": "standalone",
   "name": "Kalender Istitar",
   "orientation": "any",
   "scope": "/",
   "short_name": "Kalender Istitar",
   "start_url": "/",
-  "theme_color": "#222222",
-  "id": "kalender-istitar/",
-  "description": "Aplikasi kalender dan astronomi",
-  "lang": "id"
+  "theme_color": "#ffffff",
+  "id": "kalender-istitar/."
 }
