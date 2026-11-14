@@ -1,4 +1,4 @@
-name: Build APK Kalender Istitar
+name: Build AAB Kalender Istitar
 
 on:
   push:
@@ -32,18 +32,18 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Build Release APK
+      - name: Build Release AAB
         run: |
           ZIP_FILE=$(ls -1 *.zip 2>/dev/null | head -n 1)
           if [ -n "$ZIP_FILE" ]; then
             unzip -o "$ZIP_FILE"
             cd KalenderIstitarAndroid
           fi
-          gradle assembleRelease --no-daemon
-          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/app-release.apk"
+          gradle bundleRelease --no-daemon
+          cp app/build/outputs/bundle/release/app-release.aab "$GITHUB_WORKSPACE/app-release.aab"
 
-      - name: Upload APK Artifact
+      - name: Upload AAB Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Kalender-Istitar-Release-APK
-          path: app-release.apk
+          name: Kalender-Istitar-Release-AAB
+          path: app-release.aab
