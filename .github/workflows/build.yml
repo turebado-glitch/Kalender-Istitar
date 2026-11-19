@@ -45,17 +45,17 @@ jobs:
           fi
           cd "$GRADLE_DIR"
           gradle assembleRelease bundleRelease --no-daemon
-          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/Kalender-Istitar-v1.8.apk"
-          cp app/build/outputs/bundle/release/app-release.aab "$GITHUB_WORKSPACE/Kalender-Istitar-v1.8.aab"
+          cp app/build/outputs/apk/release/app-release.apk "$GITHUB_WORKSPACE/Kalender-Istitar-v1.10.apk"
+          cp app/build/outputs/bundle/release/app-release.aab "$GITHUB_WORKSPACE/Kalender-Istitar-v1.10.aab"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Kalender-Istitar-Release-APK
-          path: Kalender-Istitar-v1.8.apk
+          path: Kalender-Istitar-v1.10.apk
 
       - name: Upload AAB Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Kalender-Istitar-Release-AAB
-          path: Kalender-Istitar-v1.8.aab
+          path: Kalender-Istitar-v1.10.aab
